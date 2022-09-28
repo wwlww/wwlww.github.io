@@ -3,11 +3,11 @@
   <title>A simple blog</title>
   
   
-  <link href="http://wwlww.github.io/project/atom.xml" rel="self"/>
+  <link href="https://wwlww.me/atom.xml" rel="self"/>
   
-  <link href="http://wwlww.github.io/project/"/>
+  <link href="https://wwlww.me/"/>
   <updated>2022-09-28T09:57:52.560Z</updated>
-  <id>http://wwlww.github.io/project/</id>
+  <id>https://wwlww.me/</id>
   
   <author>
     <name>wwlww</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="http://wwlww.github.io/project/2022/09/28/hello-world/"/>
-    <id>http://wwlww.github.io/project/2022/09/28/hello-world/</id>
+    <link href="https://wwlww.me/2022/09/28/hello-world/"/>
+    <id>https://wwlww.me/2022/09/28/hello-world/</id>
     <published>2022-09-28T09:57:52.560Z</published>
     <updated>2022-09-28T09:57:52.560Z</updated>
     
