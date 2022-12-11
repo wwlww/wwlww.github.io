@@ -232,42 +232,141 @@
 </blockquote>
 <span id="more"></span>
 <h2 id="1-利用-lt-iomanip-gt-中的setprecision函数实现输出精度控制"><a href="#1-利用-lt-iomanip-gt-中的setprecision函数实现输出精度控制" class="headerlink" title="1.利用&lt;iomanip&gt;中的setprecision函数实现输出精度控制"></a>1.利用<code>&lt;iomanip&gt;</code>中的<code>setprecision</code>函数实现输出精度控制</h2><p>代码：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iomanip&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-type">double</span> a=<span class="hljs-number">1234.1234</span>;<br>    <span class="hljs-type">double</span> b=<span class="hljs-number">1.5555</span>;<br>    cout&lt;&lt;a&lt;&lt;endl;<br>    <span class="hljs-comment">//cout浮点数默认输出六位有效数字</span><br>    cout&lt;&lt;<span class="hljs-built_in">setprecision</span>(<span class="hljs-number">5</span>)&lt;&lt;a&lt;&lt;endl;<br>    <span class="hljs-comment">//设置输出有效数字5位，不包含小数点（不同于setw），并且不是直接截断，而是四舍五入;</span><br>    cout&lt;&lt;a&lt;&lt;endl;<br>    <span class="hljs-comment">//在下一次更改setprecison的值之前，上一次设定的精度仍然有效;</span><br>    cout&lt;&lt;b&lt;&lt;endl;<br>    <span class="hljs-comment">//在该输出精度小于设定精度时不生效;</span><br>    cout&lt;&lt;fixed&lt;&lt;<span class="hljs-built_in">setprecision</span>(<span class="hljs-number">5</span>)&lt;&lt;a&lt;&lt;endl;<br>    <span class="hljs-comment">//输入fixed后设定精度改为小数位数，且小数位数不足时补0，四舍五入;</span><br>    cout&lt;&lt;b&lt;&lt;endl;<br>    <span class="hljs-comment">//小数位数的修改仍然有效;</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iomanip></span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">double</span> a<span class="token operator">=</span><span class="token number">1234.1234</span><span class="token punctuation">;</span>
+    <span class="token keyword">double</span> b<span class="token operator">=</span><span class="token number">1.5555</span><span class="token punctuation">;</span>
+    cout<span class="token operator">&lt;&lt;</span>a<span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+    <span class="token comment">//cout浮点数默认输出六位有效数字</span>
+    cout<span class="token operator">&lt;&lt;</span><span class="token function">setprecision</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span>a<span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+    <span class="token comment">//设置输出有效数字5位，不包含小数点（不同于setw），并且不是直接截断，而是四舍五入;</span>
+    cout<span class="token operator">&lt;&lt;</span>a<span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+    <span class="token comment">//在下一次更改setprecison的值之前，上一次设定的精度仍然有效;</span>
+    cout<span class="token operator">&lt;&lt;</span>b<span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+    <span class="token comment">//在该输出精度小于设定精度时不生效;</span>
+    cout<span class="token operator">&lt;&lt;</span>fixed<span class="token operator">&lt;&lt;</span><span class="token function">setprecision</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span>a<span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+    <span class="token comment">//输入fixed后设定精度改为小数位数，且小数位数不足时补0，四舍五入;</span>
+    cout<span class="token operator">&lt;&lt;</span>b<span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+    <span class="token comment">//小数位数的修改仍然有效;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>输出结果：</p>
-<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs md">1234.12<br>1234.1<br>1234.1<br>1.5555<br>1234.12340<br>1.55550<br></code></pre></td></tr></table></figure>
+<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown">1234.12
+1234.1
+1234.1
+1.5555
+1234.12340
+1.55550<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="2-setw和setfill用法"><a href="#2-setw和setfill用法" class="headerlink" title="2.setw和setfill用法"></a>2.<code>setw</code>和<code>setfill</code>用法</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iomanip&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-type">double</span> a=<span class="hljs-number">1234.1234</span>;<br>    <span class="hljs-type">double</span> b=<span class="hljs-number">1.5555</span>;<br>    cout&lt;&lt;<span class="hljs-built_in">setw</span>(<span class="hljs-number">5</span>)&lt;&lt;a&lt;&lt;endl;<br>    <span class="hljs-comment">//设置输出5位宽度（包括小数点），默认右对齐，setw只对紧接着的输出产生作用（对在前面的输出也不产生作用），且超过设定位数后输出默认位数;</span><br>    cout&lt;&lt;<span class="hljs-built_in">setw</span>(<span class="hljs-number">10</span>)&lt;&lt;b&lt;&lt;endl;<br>    <span class="hljs-comment">//不足设定精度的默认用空格补齐;</span><br>    cout&lt;&lt;<span class="hljs-built_in">setfill</span>(<span class="hljs-string">&#x27;0&#x27;</span>)&lt;&lt;<span class="hljs-built_in">setw</span>(<span class="hljs-number">10</span>)&lt;&lt;b&lt;&lt;endl;<br>    <span class="hljs-comment">//可使用setfill改变补齐字符，不能单独使用，需配合setw使用;</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="2-setw和setfill用法"><a href="#2-setw和setfill用法" class="headerlink" title="2.setw和setfill用法"></a>2.<code>setw</code>和<code>setfill</code>用法</h2><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iomanip></span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">double</span> a<span class="token operator">=</span><span class="token number">1234.1234</span><span class="token punctuation">;</span>
+    <span class="token keyword">double</span> b<span class="token operator">=</span><span class="token number">1.5555</span><span class="token punctuation">;</span>
+    cout<span class="token operator">&lt;&lt;</span><span class="token function">setw</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span>a<span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+    <span class="token comment">//设置输出5位宽度（包括小数点），默认右对齐，setw只对紧接着的输出产生作用（对在前面的输出也不产生作用），且超过设定位数后输出默认位数;</span>
+    cout<span class="token operator">&lt;&lt;</span><span class="token function">setw</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span>b<span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+    <span class="token comment">//不足设定精度的默认用空格补齐;</span>
+    cout<span class="token operator">&lt;&lt;</span><span class="token function">setfill</span><span class="token punctuation">(</span><span class="token char">'0'</span><span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span><span class="token function">setw</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span>b<span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+    <span class="token comment">//可使用setfill改变补齐字符，不能单独使用，需配合setw使用;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>输出结果：</p>
-<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs md">1234.12<br><span class="hljs-code">    1.5555</span><br><span class="hljs-code">00001.5555</span><br></code></pre></td></tr></table></figure>
+<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown">1234.12
+    1.5555
+00001.5555<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="3-printf输出精度控制"><a href="#3-printf输出精度控制" class="headerlink" title="3.printf输出精度控制"></a>3.printf输出精度控制</h2><p>一般格式：</p>
-<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs md">printf(&quot;格式控制字符串&quot;,输出列表)；<br></code></pre></td></tr></table></figure>
+<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown">printf("格式控制字符串",输出列表)；<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>格式控制字符串形式：</p>
-<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs md">[<span class="hljs-string">标志</span>][<span class="hljs-symbol">输出最小宽度</span>][<span class="hljs-string">.精度</span>][<span class="hljs-symbol">长度</span>][<span class="hljs-string">类型</span>]<br></code></pre></td></tr></table></figure>
+<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown"><span class="token url">[<span class="token content">标志</span>][<span class="token variable">输出最小宽度</span>]</span>[.精度]<span class="token url">[<span class="token content">长度</span>][<span class="token variable">类型</span>]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>类型</p>
-<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs md">d  以十进制形式输出带符号整数(正数不输出符号) <br>o  以八进制形式输出无符号整数(不输出前缀 0) <br>x,X  以十六进制形式输出无符号整数(不输出前缀 Ox) <br>u  以十进制形式输出无符号整数 <br>f  以小数形式输出单、双精度实数 <br>e,E  以指数形式输出单、双精度实数 <br>g,G  以%f 或%e 中较短的输出宽度输出单、双精度实数 <br>c  输出单个字符 <br>s  输出字符串 <br></code></pre></td></tr></table></figure>
+<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown">d  以十进制形式输出带符号整数(正数不输出符号) 
+o  以八进制形式输出无符号整数(不输出前缀 0) 
+x,X  以十六进制形式输出无符号整数(不输出前缀 Ox) 
+u  以十进制形式输出无符号整数 
+f  以小数形式输出单、双精度实数 
+e,E  以指数形式输出单、双精度实数 
+g,G  以%f 或%e 中较短的输出宽度输出单、双精度实数 
+c  输出单个字符 
+s  输出字符串 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>标志：</p>
-<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs md"><span class="hljs-bullet">-</span>  结果左对齐，右边填空格 <br><span class="hljs-bullet">-</span>  输出符号(正号或负号) <br>空格  输出值为正时冠以空格，为负时冠以负号 <br><span class="hljs-section">#  对 c,s,d,u类无影响；</span><br>对 o 类,在输出时加前缀 o；对 x 类,在输出时加前缀 0x；<br>对 e,g,f 类当结果有小数时才给出小数点<br></code></pre></td></tr></table></figure>
+<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown"><span class="token list punctuation">-</span>  结果左对齐，右边填空格 
+<span class="token list punctuation">-</span>  输出符号(正号或负号) 
+空格  输出值为正时冠以空格，为负时冠以负号 
+<span class="token title important"><span class="token punctuation">#</span>  对 c,s,d,u类无影响；</span>
+对 o 类,在输出时加前缀 o；对 x 类,在输出时加前缀 0x；
+对 e,g,f 类当结果有小数时才给出小数点<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>输出位宽：</p>
-<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs md">用十进制整数来表示输出的最少位数。<br>若实际位数多于定义的宽度，则按实际位数输出，<br>若实际位数少于定义的宽度则补以空格或 0。<br></code></pre></td></tr></table></figure>
+<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown">用十进制整数来表示输出的最少位数。
+若实际位数多于定义的宽度，则按实际位数输出，
+若实际位数少于定义的宽度则补以空格或 0。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>精度：</p>
-<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs md">精度格式符以“.”开头，后跟十进制整数。本项的意义是：<br>如果输出数字，则表示小数的位数；<br>如果输出的是字符，则表示输出字符的个数；<br>若实际位数大于所定义的精度数，则截去超过的部分。 <br></code></pre></td></tr></table></figure>
+<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown">精度格式符以“.”开头，后跟十进制整数。本项的意义是：
+如果输出数字，则表示小数的位数；
+如果输出的是字符，则表示输出字符的个数；
+若实际位数大于所定义的精度数，则截去超过的部分。 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>长度：</p>
-<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs md">长度格式符为 h,l 两种，<br>h 表示按短整型量输出，l 表示按长整型量输出。<br></code></pre></td></tr></table></figure>
+<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown">长度格式符为 h,l 两种，
+h 表示按短整型量输出，l 表示按长整型量输出。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>测试代码：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span> &#123;<br>    <span class="hljs-type">char</span> s[] = <span class="hljs-string">&quot;abcdefg&quot;</span>;<br>    <span class="hljs-type">int</span> i = <span class="hljs-number">12345</span>;<br>    <span class="hljs-type">double</span> d = <span class="hljs-number">123.45678</span>;<br><br><br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s\n&quot;</span>, s);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%.*s\n&quot;</span>, <span class="hljs-number">3</span>, s);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%#.8x\n&quot;</span>, s);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%#p\n\n&quot;</span>, s);<br><br><br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, i);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%*d\n&quot;</span>, <span class="hljs-number">10</span>, i);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%0*d\n\n&quot;</span>, <span class="hljs-number">10</span>, i);<br><br><br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%f\n&quot;</span>, d);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%.*f\n&quot;</span>, <span class="hljs-number">3</span>, d);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%20.10f\n&quot;</span>, d);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%*.*f\n\n&quot;</span>, <span class="hljs-number">20</span>, <span class="hljs-number">10</span>, d);<br><br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">char</span> s<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"abcdefg"</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">12345</span><span class="token punctuation">;</span>
+    <span class="token keyword">double</span> d <span class="token operator">=</span> <span class="token number">123.45678</span><span class="token punctuation">;</span>
+
+
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s\n"</span><span class="token punctuation">,</span> s<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%.*s\n"</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> s<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%#.8x\n"</span><span class="token punctuation">,</span> s<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%#p\n\n"</span><span class="token punctuation">,</span> s<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%*d\n"</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%0*d\n\n"</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%f\n"</span><span class="token punctuation">,</span> d<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%.*f\n"</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> d<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%20.10f\n"</span><span class="token punctuation">,</span> d<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%*.*f\n\n"</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> d<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>输出结果：</p>
-<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs md">abcdefg<br>abc<br>0x456de280<br>0x7ffc456de280<br><br><br>12345<br><span class="hljs-code">     12345</span><br><span class="hljs-code">0000012345</span><br><span class="hljs-code"></span><br><br>123.456780<br>123.457<br><span class="hljs-code">      123.4567800000</span><br><span class="hljs-code">      123.4567800000</span><br></code></pre></td></tr></table></figure>
+<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown">abcdefg
+abc
+0x456de280
+0x7ffc456de280
+
+
+12345
+     12345
+0000012345
+
+
+123.456780
+123.457
+      123.4567800000
+      123.4567800000<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
         </div>
 
